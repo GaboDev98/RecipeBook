@@ -1,0 +1,50 @@
+[versions]
+agp = "8.3.2"
+kotlin = "1.9.0"
+coreKtx = "1.12.0"
+junit = "4.13.2"
+junitVersion = "1.1.5"
+espressoCore = "3.5.1"
+lifecycleRuntimeKtx = "2.6.1"
+activityCompose = "1.8.2"
+composeBom = "2024.04.00"
+androidx-glance = "1.0.0"
+navigationCompose = "2.7.7"
+retrofit = "2.9.0"
+viewmodelCompose = "1.0.0-alpha07"
+livedata = "2.3.1"
+coil = "2.6.0"
+koin = "3.5.0"
+
+[libraries]
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-glance = { module = "androidx.glance:glance", version.ref = "androidx-glance" }
+androidx-glance-appwidget = { module = "androidx.glance:glance-appwidget", version.ref = "androidx-glance" }
+androidx-glance-material3 = { module = "androidx.glance:glance-material3", version.ref = "androidx-glance" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+androidx-ui = { group = "androidx.compose.ui", name = "ui" }
+androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
+androidx-compose-materialWindow = { module = "androidx.compose.material3:material3-window-size-class" }
+androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
+androidx-squareup-retrofit2 = { module = "com.squareup.retrofit2:retrofit", group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+androidx-squareup-converter = { module = "com.squareup.retrofit2:converter-gson", group = "com.squareup.retrofit2", name = "converterGson", version.ref = "retrofit" }
+androidx-lifecycle-viewmodelCompose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", group = "androidx.lifecycle:lifecycle", name = "viewmodel-compose", version.ref = "viewmodelCompose" }
+androidx-lifecycle-runtime = { module = "androidx.compose.runtime:runtime-livedata", group = "androidx.compose.runtime", name = "runtime", version.ref = "viewmodelCompose" }
+androidx-lifecycle-livedata = { module = "androidx.lifecycle:lifecycle-livedata", group = "androidx.lifecycle:lifecycle", name = "lifecycle", version.ref = "livedata" }
+androidx-io-coil-kt-coil-compose = { module = "io.coil-kt:coil-compose", group = "io.coil-kt:coil-compose", name = "coilCompose", version.ref = "coil" }
+androidx-io-insert-koin-compose = { module = "io.insert-koin:koin-androidx-compose", group = "io.insert-koin:koin", name = "koinCompose", version.ref = "koin" }
+
+[plugins]
+androidApplication = { id = "com.android.application", version.ref = "agp" }
+jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+

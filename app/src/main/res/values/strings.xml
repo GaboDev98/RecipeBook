@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">RecipeBook</string>
+
+    <!-- Home Screen -->
+    <string name="home_title">Home</string>
+
+    <!-- Ingredients Screen -->
+    <string name="ingredients_title">Ingredients</string>
+
+    <!-- Favorites Screen -->
+    <string name="favorites_title">Favorites</string>
+</resources>
