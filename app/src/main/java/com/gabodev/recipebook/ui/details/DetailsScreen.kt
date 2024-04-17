@@ -40,13 +40,14 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.gabodev.recipebook.model.Meal
+import org.koin.androidx.compose.koinViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Suppress("ktlint:standard:function-naming")
 @Composable
 fun DetailsScreen(
     idMeal: String,
-    detailsViewModel: DetailsViewModel,
+    detailsViewModel: DetailsViewModel = koinViewModel(),
     navController: NavController,
     modifier: Modifier = Modifier,
 ) {
