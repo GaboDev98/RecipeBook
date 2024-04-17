@@ -6,7 +6,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-class HomeViewModelTest {
+class RecipesRepositoryTest {
     @Test
     fun setup() {
         MockKAnnotations.init(this)

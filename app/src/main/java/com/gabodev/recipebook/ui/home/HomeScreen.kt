@@ -26,6 +26,8 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -36,11 +38,12 @@ import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.gabodev.recipebook.model.Meal
 import com.gabodev.recipebook.ui.RecipeBookDestinations
+import org.koin.androidx.compose.koinViewModel
 
 @Suppress("ktlint:standard:function-naming")
 @Composable
 fun HomeScreens(
-    homeViewModel: HomeViewModel,
+    homeViewModel: HomeViewModel = koinViewModel(),
     navController: NavController,
     openDrawer: () -> Unit,
     modifier: Modifier = Modifier,
@@ -96,7 +99,8 @@ fun ScrollContent(
     modifier: Modifier = Modifier,
 ) {
     Row(
-        Modifier.padding(innerPadding)
+        Modifier
+            .padding(innerPadding)
             .fillMaxSize(),
     ) {
         if (!homeViewModel.isLoading.value) {
@@ -108,13 +112,13 @@ fun ScrollContent(
                 CircularProgressIndicator()
             }
         } else {
-            val mealsList = homeViewModel.recipeMeals?.meals
-            if (mealsList != null) {
+            val recipe by homeViewModel.recipeMeals.observeAsState()
+            if (recipe != null) {
                 LazyColumn(
                     modifier = modifier.fillMaxSize(),
                     contentPadding = PaddingValues(8.dp),
                 ) {
-                    items(items = mealsList) { item ->
+                    items(items = recipe!!.meals) { item ->
                         ColumnItemMeal(
                             item = item,
                             navController = navController,

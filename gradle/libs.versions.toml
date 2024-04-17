@@ -15,6 +15,9 @@ viewmodelCompose = "1.0.0-alpha07"
 livedata = "2.3.1"
 coil = "2.6.0"
 koin = "3.5.0"
+mockk = "1.13.10"
+jupiter = "5.10.2"
+mockito = "4.1.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -33,6 +36,12 @@ androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+androidx-io-mockk-android = {  module = "io.mockk:mockk-android", group = "io.mockk:mockk-android", name = "mockk", version.ref = "mockk" }
+androidx-org-mockito-kotlin = {  module = "org.mockito.kotlin:mockito-kotlin", group = "org.mockito.kotlin:mockito-kotlin", name = "mockito", version.ref = "mockito" }
+androidx-org-junit-jupiter-api = {  module = "org.junit.jupiter:junit-jupiter-api", group = "org.junit.jupiter:junit-jupiter-api", name = "jupiterApi", version.ref = "jupiter" }
+androidx-org-junit-jupiter-engine = {  module = "org.junit.jupiter:junit-jupiter-engine", group = "org.junit.jupiter:junit-jupiter-engine", name = "jupiterEngine", version.ref = "jupiter" }
+androidx-org-junit-jupiter-params = {  module = "org.junit.jupiter:junit-jupiter-params", group = "org.junit.jupiter:junit-jupiter-params", name = "jupiterParams", version.ref = "jupiter" }
+androidx-org-junit-jupiter-vintage = {  module = "org.junit.vintage:junit-vintage-engine", group = "org.junit.vintage:junit-vintage-engine", name = "jupiterVintage", version.ref = "jupiter" }
 androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-compose-materialWindow = { module = "androidx.compose.material3:material3-window-size-class" }
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }

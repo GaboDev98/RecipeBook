@@ -44,6 +44,7 @@ android {
     }
     packaging {
         resources {
+            excludes += "/META-INF/*"
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
@@ -84,6 +85,12 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
+    androidTestImplementation(libs.androidx.io.mockk.android)
+    androidTestImplementation(libs.androidx.org.mockito.kotlin)
+    androidTestImplementation(libs.androidx.org.junit.jupiter.api)
+    androidTestImplementation(libs.androidx.org.junit.jupiter.engine)
+    androidTestImplementation(libs.androidx.org.junit.jupiter.params)
+    androidTestImplementation(libs.androidx.org.junit.jupiter.vintage)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 }

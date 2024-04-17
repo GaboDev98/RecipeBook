@@ -14,12 +14,13 @@ import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.InputChip
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -28,11 +29,14 @@ import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.gabodev.recipebook.model.Meal
@@ -62,7 +66,8 @@ fun DetailsScreen(
             CircularProgressIndicator()
         }
     } else {
-        val mealDetails = detailsViewModel.recipeDetails?.meals?.first()
+        val recipe by detailsViewModel.recipeDetails.observeAsState()
+        val mealDetails = recipe?.meals?.first()
         Scaffold(
             topBar = {
                 TopAppBar(
@@ -72,7 +77,7 @@ fun DetailsScreen(
                             navController.popBackStack()
                         }) {
                             Icon(
-                                imageVector = Icons.Filled.ArrowBack,
+                                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                                 contentDescription = "",
                                 tint = MaterialTheme.colorScheme.primary,
                             )
@@ -100,7 +105,7 @@ private fun TopAppBar(
 ) {
     CenterAlignedTopAppBar(
         title = {
-            Text(title)
+            Text(title, fontSize = 24.sp)
         },
         navigationIcon = navigationIconContent,
         scrollBehavior = scrollBehavior,
@@ -128,22 +133,36 @@ fun MealContent(
 }
 
 fun LazyListScope.mealContentItems(meal: Meal) {
+    val tagsArray = meal.strTags?.split(",")
     item {
-        MealHeaderImage(meal)
-        Spacer(Modifier.height(defaultSpacerSize))
-        Text(meal.strMeal, style = MaterialTheme.typography.headlineLarge)
-        Spacer(Modifier.height(8.dp))
-        if (meal.strDrinkAlternate != null) {
-            Text(meal.strDrinkAlternate, style = MaterialTheme.typography.bodyMedium)
-            Spacer(Modifier.height(defaultSpacerSize))
-        }
-        if (meal.strInstructions != null) {
-            Text(meal.strInstructions, style = MaterialTheme.typography.bodySmall)
-            Spacer(Modifier.height(defaultSpacerSize))
+        with(meal) {
+            MealHeaderImage(this)
+            Spacer(Modifier.height(12.dp))
+            if (tagsArray != null) {
+                tagsArray.forEach { word ->
+                    InputChip(
+                        selected = false,
+                        onClick = { },
+                        label = { Text(word) },
+                        trailingIcon = { },
+                    )
+                }
+                Spacer(Modifier.height(8.dp))
+            }
+            if (strCategory != null) {
+                Text(strCategory, fontSize = 24.sp)
+                Spacer(Modifier.height(8.dp))
+            }
+            if (strDrinkAlternate != null) {
+                Text(strDrinkAlternate, fontSize = 20.sp)
+                Spacer(Modifier.height(defaultSpacerSize))
+            }
+            if (strInstructions != null) {
+                Text(strInstructions, fontSize = 16.sp)
+                Spacer(Modifier.height(defaultSpacerSize))
+            }
         }
     }
-    // item { PostMetadata(meal.metadata, Modifier.padding(bottom = 24.dp)) }
-    // items(meal.paragraphs) { Paragraph(paragraph = it) }
 }
 
 @Suppress("ktlint:standard:function-naming")

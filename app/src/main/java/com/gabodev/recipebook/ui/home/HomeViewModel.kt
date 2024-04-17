@@ -1,6 +1,8 @@
 package com.gabodev.recipebook.ui.home
 
 import androidx.compose.runtime.mutableStateOf
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.gabodev.recipebook.data.Result
@@ -11,9 +13,8 @@ class HomeViewModel(
     private val recipesRepository: RecipesRepository,
 ) : ViewModel() {
     var isLoading = mutableStateOf(false)
-    private val _recipeMeals = mutableStateOf<Recipe?>(null)
-    val recipeMeals: Recipe?
-        get() = _recipeMeals.value
+    private val _recipeMeals = MutableLiveData<Recipe>()
+    val recipeMeals: LiveData<Recipe> = _recipeMeals
 
     suspend fun getRecipes() {
         val result = recipesRepository.getRecipes()

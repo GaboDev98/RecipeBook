@@ -55,7 +55,6 @@ fun RecipeBookNavGraph(
                 detailsViewModel = detailsViewModel,
                 navBackStackEntry = navBackStackEntry,
                 navController = navController,
-                openDrawer = openDrawer,
             )
         }
     }

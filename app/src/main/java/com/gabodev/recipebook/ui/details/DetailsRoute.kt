@@ -10,7 +10,6 @@ fun DetailsRoute(
     detailsViewModel: DetailsViewModel,
     navBackStackEntry: NavBackStackEntry,
     navController: NavController,
-    openDrawer: () -> Unit,
 ) {
     val uId = navBackStackEntry.arguments?.getString("mealId")
     uId?.let { id ->
