@@ -21,6 +21,17 @@ class RecipesRepositoryImp(
         }
     }
 
+    override suspend fun getRecipesSearch(word: String): Result<Recipe?> {
+        return withContext(Dispatchers.IO) {
+            try {
+                val response = apiService.getRecipesSearch(word)
+                Result.Success(response)
+            } catch (e: Exception) {
+                Result.Error(IllegalArgumentException(e.message))
+            }
+        }
+    }
+
     override suspend fun getRecipeById(idMeal: String): Result<Recipe?> {
         return withContext(Dispatchers.IO) {
             try {

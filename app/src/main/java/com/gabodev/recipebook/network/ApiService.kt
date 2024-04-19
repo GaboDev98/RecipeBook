@@ -8,6 +8,11 @@ interface ApiService {
     @GET("search.php?s=")
     suspend fun getRecipes(): Recipe?
 
+    @GET("search.php?s=")
+    suspend fun getRecipesSearch(
+        @Query("s") word: String,
+    ): Recipe?
+
     @GET("lookup.php")
     suspend fun getRecipeById(
         @Query("i") id: String,

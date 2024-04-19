@@ -5,14 +5,19 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -22,10 +27,12 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
@@ -37,6 +44,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.gabodev.recipebook.model.Meal
+import com.gabodev.recipebook.model.Recipe
 import com.gabodev.recipebook.ui.RecipeBookDestinations
 import org.koin.androidx.compose.koinViewModel
 
@@ -64,29 +72,70 @@ fun TopAppBarCustom(
     openDrawer: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    // Collecting states from ViewModel
+    val searchText by homeViewModel.searchText.collectAsState()
+    val recipe by homeViewModel.recipeMeals.observeAsState()
+
     Scaffold(
         topBar = {
-            TopAppBar(
-                colors =
-                    TopAppBarDefaults.topAppBarColors(
-                        containerColor = MaterialTheme.colorScheme.primaryContainer,
-                        titleContentColor = MaterialTheme.colorScheme.primary,
-                    ),
-                title = {
-                    Text("Recipe Book")
-                },
-                navigationIcon = {
-                    IconButton(onClick = openDrawer) {
+            Column {
+                TopAppBar(
+                    colors =
+                        TopAppBarDefaults.topAppBarColors(
+                            containerColor = MaterialTheme.colorScheme.primaryContainer,
+                            titleContentColor = MaterialTheme.colorScheme.primary,
+                        ),
+                    title = {
+                        Text("Recipe Book")
+                    },
+                    navigationIcon = {
+                        IconButton(onClick = openDrawer) {
+                            Icon(
+                                imageVector = Icons.Filled.Menu,
+                                contentDescription = "Localized description",
+                            )
+                        }
+                    },
+                )
+                TextField(
+                    value = searchText,
+                    onValueChange = homeViewModel::onSearchTextChange,
+                    modifier = modifier.fillMaxWidth(),
+                    placeholder = { Text("Search") },
+                    leadingIcon = {
                         Icon(
-                            imageVector = Icons.Filled.Menu,
-                            contentDescription = "Localized description",
+                            Icons.Default.Search,
+                            contentDescription = "",
+                            modifier =
+                                Modifier
+                                    .padding(15.dp)
+                                    .size(24.dp),
                         )
-                    }
-                },
-            )
+                    },
+                    trailingIcon = {
+                        if (searchText != "") {
+                            IconButton(
+                                onClick = {
+                                    homeViewModel.clearSearchText()
+                                },
+                            ) {
+                                Icon(
+                                    Icons.Default.Close,
+                                    contentDescription = "",
+                                    modifier =
+                                        Modifier
+                                            .padding(8.dp)
+                                            .size(24.dp),
+                                )
+                            }
+                        }
+                    },
+                )
+                Spacer(modifier = modifier.height(16.dp))
+            }
         },
     ) { innerPadding ->
-        ScrollContent(homeViewModel, navController, innerPadding, modifier)
+        ScrollContent(homeViewModel, recipe, navController, innerPadding, modifier)
     }
 }
 
@@ -94,6 +143,7 @@ fun TopAppBarCustom(
 @Composable
 fun ScrollContent(
     homeViewModel: HomeViewModel,
+    recipe: Recipe?,
     navController: NavController,
     innerPadding: PaddingValues,
     modifier: Modifier = Modifier,
@@ -112,13 +162,12 @@ fun ScrollContent(
                 CircularProgressIndicator()
             }
         } else {
-            val recipe by homeViewModel.recipeMeals.observeAsState()
-            if (recipe != null) {
+            if (recipe?.meals != null) {
                 LazyColumn(
                     modifier = modifier.fillMaxSize(),
                     contentPadding = PaddingValues(8.dp),
                 ) {
-                    items(items = recipe!!.meals) { item ->
+                    items(items = recipe.meals) { item ->
                         ColumnItemMeal(
                             item = item,
                             navController = navController,
