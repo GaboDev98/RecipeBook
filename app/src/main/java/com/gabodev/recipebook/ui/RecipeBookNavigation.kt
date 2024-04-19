@@ -9,7 +9,6 @@ import androidx.navigation.NavHostController
 object RecipeBookDestinations {
     const val HOME_ROUTE = "home"
     const val DETAILS_ROUTE = "details"
-    const val FAVORITES_ROUTE = "favorites"
 }
 
 /**
@@ -18,15 +17,6 @@ object RecipeBookDestinations {
 class RecipeBookNavigationActions(navController: NavHostController) {
     val navigateToHome: () -> Unit = {
         navController.navigate(RecipeBookDestinations.HOME_ROUTE) {
-            popUpTo(navController.graph.findStartDestination().id) {
-                saveState = true
-            }
-            launchSingleTop = true
-            restoreState = true
-        }
-    }
-    val navigateToFavorites: () -> Unit = {
-        navController.navigate(RecipeBookDestinations.FAVORITES_ROUTE) {
             popUpTo(navController.graph.findStartDestination().id) {
                 saveState = true
             }

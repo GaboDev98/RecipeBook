@@ -38,7 +38,6 @@ fun RecipeBookApp(widthSizeClass: WindowWidthSizeClass) {
                 AppDrawer(
                     currentRoute = currentRoute,
                     navigateToHome = navigationActions.navigateToHome,
-                    navigateToFavorites = navigationActions.navigateToFavorites,
                     closeDrawer = { coroutineScope.launch { sizeAwareDrawerState.close() } },
                 )
             },

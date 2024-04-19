@@ -96,6 +96,14 @@ fun TopAppBarCustom(
                             )
                         }
                     },
+                    /*actions = {
+                        IconButton(onClick = { }) {
+                            Icon(
+                                imageVector = SimpleIcons.AllIcons.Filter,
+                                contentDescription = "Localized description",
+                            )
+                        }
+                    },*/
                 )
                 TextField(
                     value = searchText,

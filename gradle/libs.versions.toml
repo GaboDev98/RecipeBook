@@ -18,6 +18,7 @@ koin = "3.5.0"
 mockk = "1.13.10"
 jupiter = "5.10.2"
 mockito = "4.1.0"
+composeIcons = "1.1.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -54,6 +55,7 @@ androidx-io-coil-kt-coil-compose = { module = "io.coil-kt:coil-compose", group =
 androidx-io-insert-android = { module = "io.insert-koin:koin-android", group = "io.insert-koin:koin", name = "koinAndroid", version.ref = "koin" }
 androidx-io-insert-koin-navigation = { module = "io.insert-koin:koin-androidx-navigation", group = "io.insert-koin:koin", name = "koinNavigation", version.ref = "koin" }
 androidx-io-insert-koin-compose = { module = "io.insert-koin:koin-androidx-compose", group = "io.insert-koin:koin", name = "koinCompose", version.ref = "koin" }
+androidx-simple-icons = { module = "br.com.devsrsouza.compose.icons:simple-icons", group = "br.com.devsrsouza.compose.icons:simple", name = "simpleIcons", version.ref = "composeIcons" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

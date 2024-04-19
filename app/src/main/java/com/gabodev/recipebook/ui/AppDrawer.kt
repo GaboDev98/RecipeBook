@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.List
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalDrawerSheet
@@ -26,7 +25,6 @@ import com.gabodev.recipebook.R
 fun AppDrawer(
     currentRoute: String,
     navigateToHome: () -> Unit,
-    navigateToFavorites: () -> Unit,
     closeDrawer: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -40,16 +38,6 @@ fun AppDrawer(
             selected = currentRoute == RecipeBookDestinations.HOME_ROUTE,
             onClick = {
                 navigateToHome()
-                closeDrawer()
-            },
-            modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding),
-        )
-        NavigationDrawerItem(
-            label = { Text(stringResource(id = R.string.favorites_title)) },
-            icon = { Icon(Icons.Filled.List, null) },
-            selected = currentRoute == RecipeBookDestinations.DETAILS_ROUTE,
-            onClick = {
-                navigateToFavorites()
                 closeDrawer()
             },
             modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding),

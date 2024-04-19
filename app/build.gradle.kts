@@ -73,6 +73,9 @@ dependencies {
     implementation(libs.androidx.io.insert.koin.navigation)
     implementation(libs.androidx.io.insert.koin.compose)
 
+    // Font Awesome //
+    implementation(libs.androidx.simple.icons)
+
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
