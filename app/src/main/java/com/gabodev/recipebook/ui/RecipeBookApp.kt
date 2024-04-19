@@ -11,16 +11,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.gabodev.recipebook.data.AppContainer
 import com.gabodev.recipebook.ui.theme.RecipeBookTheme
 import kotlinx.coroutines.launch
 
 @Suppress("ktlint:standard:function-naming")
 @Composable
-fun RecipeBookApp(
-    appContainer: AppContainer,
-    widthSizeClass: WindowWidthSizeClass,
-) {
+fun RecipeBookApp(widthSizeClass: WindowWidthSizeClass) {
     RecipeBookTheme {
         val navController = rememberNavController()
         val navigationActions =
@@ -51,7 +47,6 @@ fun RecipeBookApp(
             gesturesEnabled = !isExpandedScreen,
         ) {
             RecipeBookNavGraph(
-                appContainer = appContainer,
                 navController = navController,
                 openDrawer = { coroutineScope.launch { sizeAwareDrawerState.open() } },
             )

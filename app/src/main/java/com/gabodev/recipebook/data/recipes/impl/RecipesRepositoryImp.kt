@@ -3,13 +3,13 @@ package com.gabodev.recipebook.data.recipes.impl
 import com.gabodev.recipebook.data.Result
 import com.gabodev.recipebook.data.recipes.RecipesRepository
 import com.gabodev.recipebook.model.Recipe
-import com.gabodev.recipebook.network.RetrofitInstance
+import com.gabodev.recipebook.network.ApiService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class RecipesRepositoryImp : RecipesRepository {
-    private val apiService = RetrofitInstance.api
-
+class RecipesRepositoryImp(
+    private val apiService: ApiService,
+) : RecipesRepository {
     override suspend fun getRecipes(): Result<Recipe?> {
         return withContext(Dispatchers.IO) {
             try {

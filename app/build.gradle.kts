@@ -69,6 +69,8 @@ dependencies {
     implementation(libs.androidx.io.coil.kt.coil.compose)
 
     // KOIN //
+    implementation(libs.androidx.io.insert.android)
+    implementation(libs.androidx.io.insert.koin.navigation)
     implementation(libs.androidx.io.insert.koin.compose)
 
     implementation(libs.androidx.lifecycle.runtime.ktx)
